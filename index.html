@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dunia Kecil Untukmu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Patrick+Hand&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <style>
 /* ============================================================
@@ -20,9 +20,9 @@
 :root{
   --paper:#FBF6EC; --paper2:#F3ECDF; --paper3:#EFE7D6;
   --ink:#5B4A46; --ink-soft:#8A7A74; --ink-faint:#AFA299;
-  --blue:#C7E7F5; --pink:#F8C9DC; --lav:#C7CFF5; --sage:#CFE3C0;
-  --blue-d:#6FB9DE; --pink-d:#E0579A; --lav-d:#7C8EEA; --sage-d:#6FA85C;
-  --gold:#F0D98C; --gold-d:#C9A94E;
+  --blue:#C7E7F5; --pink:#F8C9DC; --lav:#D6ECF8; --sage:#FAD6E4;
+  --blue-d:#6FB9DE; --pink-d:#E0579A; --lav-d:#4FA8D8; --sage-d:#D94A8C;
+  --gold:#CFE9F7; --gold-d:#5FAEDB;
   --white-card:#FFFDF8;
   --shadow: 0 10px 26px rgba(124,142,234,0.24);
   --shadow-sm: 0 4px 12px rgba(224,87,154,0.2);
@@ -34,7 +34,7 @@ html,body{ margin:0; padding:0; }
 body{
   background:var(--paper);
   color:var(--ink);
-  font-family:'Cormorant Garamond',Georgia,serif;
+  font-family:'Quicksand',system-ui,sans-serif;
   overflow-x:hidden;
   background-image:
     repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(138,122,116,0.06) 28px),
@@ -45,7 +45,7 @@ body{
 }
 h1,h2,h3{font-family:'Caveat',cursive; margin:0; line-height:1.1;}
 p{line-height:1.6;}
-button{font-family:'Patrick Hand',cursive; cursor:pointer;}
+button{font-family:'Quicksand',system-ui,sans-serif; font-weight:600; cursor:pointer;}
 .gutter{ padding-left:16px; padding-right:16px; }
 section{min-width:0;}
 img{max-width:100%;}
@@ -93,11 +93,11 @@ img{max-width:100%;}
 }
 #openGiftBtn:active{ transform:scale(.96); }
 .cover-sub{font-family:'Caveat',cursive; font-size:22px; color:#6b5650; margin-top:14px;}
-.cover-kicker{font-family:'Patrick Hand',cursive; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#6b5650; opacity:.75;}
+.cover-kicker{font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#6b5650; opacity:.75;}
 .lock-box{ margin-top:4px; }
 .lock-q{ font-family:'Caveat',cursive; font-size:20px; color:#4a3b38; margin-bottom:8px; }
-.lock-input{ width:200px; max-width:80%; padding:10px 14px; border-radius:999px; border:2px solid var(--pink-d); text-align:center; font-family:'Patrick Hand',cursive; font-size:15px; margin-bottom:8px; background:#fff; }
-.lock-err{ color:#b4463f; font-size:13px; font-family:'Patrick Hand',cursive; min-height:16px; margin-bottom:4px; }
+.lock-input{ width:200px; max-width:80%; padding:10px 14px; border-radius:999px; border:2px solid var(--pink-d); text-align:center; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:15px; margin-bottom:8px; background:#fff; }
+.lock-err{ color:#b4463f; font-size:13px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; min-height:16px; margin-bottom:4px; }
 
 .fheart{ position:absolute; font-size:18px; opacity:.55; animation:floatUp 6s linear infinite; color:#fff; }
 @keyframes floatUp{ 0%{ transform:translateY(0) rotate(0deg); opacity:0;} 10%{opacity:.6;} 100%{ transform:translateY(-420px) rotate(25deg); opacity:0;} }
@@ -118,7 +118,7 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
 .tape{ position:absolute; height:26px; opacity:.85; border-radius:2px; box-shadow:0 1px 2px rgba(0,0,0,0.08); }
 .tape.top{ top:-13px; left:50%; transform:translateX(-50%) rotate(-3deg); width:90px; }
 .section-title{ font-size:34px; text-align:center; color:var(--pink-d); margin-bottom:4px;}
-.section-kicker{ text-align:center; font-family:'Patrick Hand',cursive; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-d); font-weight:700; margin-bottom:18px;}
+.section-kicker{ text-align:center; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--pink-d); font-weight:700; margin-bottom:18px;}
 .stitched{ border:2px dashed rgba(91,74,70,0.25); border-radius:12px; }
 
 .hero-card{ text-align:center; background:linear-gradient(180deg, var(--white-card), var(--paper2)); }
@@ -131,16 +131,16 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
   border-radius:14px; padding:18px; text-align:center; box-shadow:var(--shadow);
   border:2px dashed rgba(91,74,70,0.3);
 }
-.std-title{ font-size:14px; font-family:'Patrick Hand',cursive; letter-spacing:3px; text-transform:uppercase; color:#4a4a63; }
+.std-title{ font-size:14px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#4a4a63; }
 .std-date{ font-size:40px; color:#4a3f63; margin:2px 0;}
 .std-caption{ font-size:17px; color:#4a3f63; font-style:italic; }
 .countdown{ display:flex; justify-content:center; gap:10px; margin-top:14px; flex-wrap:wrap; }
 .cd-box{ background:var(--white-card); border-radius:10px; padding:8px 12px; min-width:58px; box-shadow:var(--shadow-sm); }
 .cd-num{ font-size:24px; font-weight:600; color:var(--pink-d); font-family:'Caveat',cursive; display:block; }
-.cd-label{ font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); font-family:'Patrick Hand',cursive; }
+.cd-label{ font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
 .cal-wrap{ margin-top:20px; }
 .cal-head{ text-align:center; font-size:22px; color:var(--ink); margin-bottom:8px; }
-.cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:4px; font-family:'Patrick Hand',cursive; }
+.cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:4px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
 .cal-dow{ text-align:center; font-size:11px; color:var(--ink-soft); padding-bottom:4px; }
 .cal-cell{ text-align:center; font-size:13px; padding:6px 0; border-radius:8px; color:var(--ink); }
 .cal-cell.empty{ visibility:hidden; }
@@ -159,20 +159,20 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
 .tl::before{ content:""; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:var(--lav-d); }
 .tl-item{ position:relative; margin-bottom:20px; min-width:0; }
 .tl-item::before{ content:"♡"; position:absolute; left:-28px; top:-2px; color:var(--pink-d); font-size:16px; background:var(--white-card); }
-.tl-date{ font-family:'Patrick Hand',cursive; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--sage-d); }
+.tl-date{ font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--sage-d); }
 .tl-text{ font-size:17px; color:var(--ink); }
 
 .quiz-item{ margin-bottom:16px; }
 .quiz-q{ font-size:17px; color:var(--ink); margin-bottom:6px; }
 .quiz-row{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
-.quiz-row input{ flex:1; min-width:120px; padding:8px 10px; border-radius:8px; border:1px solid rgba(91,74,70,0.25); font-family:'Cormorant Garamond',serif; font-size:15px; }
-.quiz-check{ background:var(--blue-d); color:#fff; border:none; border-radius:999px; padding:8px 16px; font-size:13px; font-family:'Patrick Hand',cursive; }
-.quiz-fb{ font-size:13px; font-family:'Patrick Hand',cursive; margin-top:4px; min-height:16px; }
+.quiz-row input{ flex:1; min-width:120px; padding:8px 10px; border-radius:8px; border:1px solid rgba(91,74,70,0.25); font-family:'Quicksand',system-ui,sans-serif; font-size:15px; }
+.quiz-check{ background:var(--blue-d); color:#fff; border:none; border-radius:999px; padding:8px 16px; font-size:13px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
+.quiz-fb{ font-size:13px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; margin-top:4px; min-height:16px; }
 .quiz-fb.ok{ color:var(--sage-d); }
 .quiz-fb.no{ color:#b4463f; }
 .quiz-score{ text-align:center; font-family:'Caveat',cursive; font-size:22px; color:var(--pink-d); margin-top:10px; }
 
-.letter-card{ background:var(--paper2); font-family:'Cormorant Garamond',serif; }
+.letter-card{ background:var(--paper2); font-family:'Quicksand',system-ui,sans-serif; }
 .letter-body{ font-size:18px; white-space:pre-wrap; color:#4a3b38; font-style:italic; }
 .letter-sign{ text-align:right; font-family:'Caveat',cursive; font-size:24px; color:var(--pink-d); margin-top:10px; }
 
@@ -187,12 +187,12 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
 .vinyl::after{ content:""; position:absolute; inset:0; margin:auto; width:28px; height:28px; border-radius:50%; background:var(--pink-d); top:50%; left:50%; transform:translate(-50%,-50%); }
 @keyframes spin{ to{ transform:rotate(360deg); } }
 .song-title{ text-align:center; font-size:22px; color:var(--ink); }
-.song-artist{ text-align:center; font-family:'Patrick Hand',cursive; color:var(--ink-soft); font-size:13px; margin-bottom:14px;}
+.song-artist{ text-align:center; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; color:var(--ink-soft); font-size:13px; margin-bottom:14px;}
 .music-ctrl{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
 .btn-pill{ border:none; border-radius:999px; padding:10px 18px; font-size:14px; box-shadow:var(--shadow-sm); }
 .btn-pink{ background:var(--pink-d); color:#fff; }
 .btn-outline{ background:transparent; border:2px solid var(--pink-d); color:var(--pink-d); }
-.music-note{ font-size:12px; color:var(--ink-soft); text-align:center; margin-top:10px; font-family:'Patrick Hand',cursive; }
+.music-note{ font-size:12px; color:var(--ink-soft); text-align:center; margin-top:10px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
 
 .closing-card{ text-align:center; background:linear-gradient(180deg, var(--paper2), var(--sage)); }
 .closing-text{ font-size:20px; font-style:italic; }
@@ -204,20 +204,62 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
 .drawer{ background:var(--paper); width:100%; max-width:560px; max-height:88vh; overflow-y:auto; border-radius:18px 18px 0 0; padding:18px; }
 .drawer h2{ font-size:26px; color:var(--pink-d); margin-bottom:12px; }
 .field{ margin-bottom:14px; }
-.field label{ display:block; font-family:'Patrick Hand',cursive; font-size:13px; color:var(--ink-soft); margin-bottom:4px; }
-.field input, .field textarea{ width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(91,74,70,0.25); font-family:'Cormorant Garamond',serif; font-size:15px; background:var(--white-card); color:var(--ink); }
+.field label{ display:block; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:13px; color:var(--ink-soft); margin-bottom:4px; }
+.field input, .field textarea{ width:100%; padding:8px 10px; border-radius:8px; border:1px solid rgba(91,74,70,0.25); font-family:'Quicksand',system-ui,sans-serif; font-size:15px; background:var(--white-card); color:var(--ink); }
 .field textarea{ min-height:90px; resize:vertical; }
 .repeat-row{ border:1px solid rgba(91,74,70,0.15); border-radius:10px; padding:10px; margin-bottom:10px; background:var(--white-card); }
 .row-actions{ display:flex; justify-content:flex-end; margin-top:4px; }
-.mini-btn{ background:transparent; border:none; color:var(--pink-d); font-family:'Patrick Hand',cursive; font-size:13px; }
+.mini-btn{ background:transparent; border:none; color:var(--pink-d); font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:13px; }
 .drawer-actions{ display:flex; gap:10px; margin-top:16px; position:sticky; bottom:0; background:var(--paper); padding-top:10px; }
 .drawer-actions button{ flex:1; border:none; border-radius:10px; padding:12px; font-size:15px; }
 .save-btn{ background:var(--sage-d); color:#fff; }
 .close-btn{ background:var(--paper3); color:var(--ink); }
 .add-btn{ background:var(--lav-d); color:#fff; border:none; border-radius:999px; padding:8px 16px; font-size:13px; margin-bottom:10px; }
-.toast{ position:fixed; top:14px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 18px; border-radius:999px; font-size:13px; z-index:90; opacity:0; transition:opacity .3s ease; pointer-events:none; font-family:'Patrick Hand',cursive; }
+.toast{ position:fixed; top:14px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; padding:10px 18px; border-radius:999px; font-size:13px; z-index:90; opacity:0; transition:opacity .3s ease; pointer-events:none; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
 .toast.show{ opacity:.95; }
-.note-box{ background:var(--blue); border-radius:10px; padding:10px 12px; font-size:12px; font-family:'Patrick Hand',cursive; color:#3a4b53; margin-top:8px; }
+.note-box{ background:var(--blue); border-radius:10px; padding:10px 12px; font-size:12px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; color:#3a4b53; margin-top:8px; }
+
+/* ---------- Nav bar ---------- */
+#navBar{ position:sticky; top:0; z-index:20; display:flex; gap:6px; overflow-x:auto; padding:10px 14px; background:rgba(251,246,236,0.92); backdrop-filter:blur(6px); border-bottom:1px solid rgba(91,74,70,0.1); -webkit-overflow-scrolling:touch; }
+#navBar::-webkit-scrollbar{ display:none; }
+.nav-link{ flex:0 0 auto; background:var(--white-card); color:var(--ink); text-decoration:none; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:12px; padding:7px 13px; border-radius:999px; box-shadow:var(--shadow-sm); white-space:nowrap; border:1px solid rgba(91,74,70,0.1); }
+
+/* ---------- Open When Letters ---------- */
+.ow-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:16px; }
+.ow-card{ background:var(--white-card); border-radius:12px; padding:16px 10px; text-align:center; box-shadow:var(--shadow-sm); border:1px dashed rgba(91,74,70,0.25); cursor:pointer; transition:transform .15s ease; min-width:0; }
+.ow-card:active{ transform:scale(.96); }
+.ow-icon{ font-size:26px; }
+.ow-title{ font-family:'Caveat',cursive; font-size:17px; color:var(--pink-d); margin-top:4px; line-height:1.2; }
+.ow-modal-card{ max-width:480px; }
+.ow-modal-title{ font-size:28px; color:var(--pink-d); text-align:center; margin-bottom:10px; }
+.ow-modal-body{ font-size:17px; white-space:pre-wrap; color:var(--ink); font-family:'Quicksand',system-ui,sans-serif; }
+
+/* ---------- Reasons ---------- */
+.reason-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:16px; }
+.reason-card{ background:var(--white-card); border-radius:12px; padding:14px 10px; text-align:center; min-height:76px; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm); cursor:pointer; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; font-size:12px; color:var(--ink-soft); transition:background .2s ease,color .2s ease; min-width:0; }
+.reason-card.flipped{ background:var(--sage); color:#4a2638; font-family:'Caveat',cursive; font-size:15px; font-weight:600; }
+.reason-num{ position:absolute; }
+
+/* ---------- Bucket list ---------- */
+.bucket-list{ list-style:none; margin:16px 0 0; padding:0; }
+.bucket-item{ display:flex; align-items:center; gap:10px; padding:9px 4px; border-bottom:1px dashed rgba(91,74,70,0.15); font-size:15px; }
+.bucket-item input{ width:19px; height:19px; accent-color:var(--pink-d); flex:0 0 auto; }
+.bucket-item.done span{ text-decoration:line-through; color:var(--ink-faint); }
+.bucket-note{ font-size:12px; color:var(--ink-soft); margin-top:10px; font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
+
+/* ---------- Coupons ---------- */
+.coupon-grid{ display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.coupon-card{ background:var(--white-card); border:2px dashed var(--pink-d); border-radius:12px; padding:14px; display:flex; justify-content:space-between; align-items:center; gap:10px; min-width:0; }
+.coupon-txt{ min-width:0; }
+.coupon-title{ font-family:'Caveat',cursive; font-size:19px; color:var(--pink-d); }
+.coupon-desc{ font-size:12px; color:var(--ink-soft); font-family:'Quicksand',system-ui,sans-serif; font-weight:600; }
+.coupon-redeem{ flex:0 0 auto; border:none; border-radius:999px; padding:8px 14px; font-size:12px; background:var(--pink-d); color:#fff; }
+.coupon-redeem.used{ background:var(--paper3); color:var(--ink-faint); }
+
+/* ---------- Future letter ---------- */
+.future-locked{ text-align:center; padding:10px 0; }
+.future-date{ font-family:'Caveat',cursive; font-size:20px; color:var(--lav-d); margin-top:6px; }
+.future-body{ font-size:17px; white-space:pre-wrap; color:var(--ink); margin-top:10px; }
 </style>
 </head>
 <body>
@@ -251,6 +293,22 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
 <canvas id="confettiCanvas"></canvas>
 
 <main class="gutter" id="siteMain" hidden>
+
+  <nav id="navBar">
+    <a class="nav-link" href="#sec-wish">🏠 Home</a>
+    <a class="nav-link" href="#sec-date">🎉 Ulang Tahun</a>
+    <a class="nav-link" href="#sec-gallery">📷 Galeri</a>
+    <a class="nav-link" href="#sec-timeline">💞 Cerita</a>
+    <a class="nav-link" href="#sec-letter">💌 Surat</a>
+    <a class="nav-link" href="#sec-openwhen">✉️ Open When</a>
+    <a class="nav-link" href="#sec-quiz">❓ Kuis</a>
+    <a class="nav-link" href="#sec-reasons">💗 Alasan</a>
+    <a class="nav-link" href="#sec-bucket">📝 Bucket List</a>
+    <a class="nav-link" href="#sec-secret">🎁 Rahasia</a>
+    <a class="nav-link" href="#sec-coupons">🎫 Kupon</a>
+    <a class="nav-link" href="#sec-future">⏳ Masa Depan</a>
+    <a class="nav-link" href="#sec-music">🎵 Lagu</a>
+  </nav>
 
   <section class="section" id="sec-wish">
     <div class="card hero-card stitched">
@@ -324,6 +382,34 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     </div>
   </section>
 
+  <section class="section" id="sec-openwhen">
+    <div class="card">
+      <div class="tape top" style="background:var(--gold);"></div>
+      <div class="section-kicker">buka kalau kamu butuh ini</div>
+      <h2 class="section-title" style="color:var(--gold-d);">Open When Letters</h2>
+      <div class="ow-grid" id="owGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-reasons">
+    <div class="card">
+      <div class="tape top" style="background:var(--pink);"></div>
+      <div class="section-kicker">ketuk kartunya</div>
+      <h2 class="section-title">Alasan Aku Sayang Kamu</h2>
+      <div class="reason-grid" id="reasonGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-bucket">
+    <div class="card">
+      <div class="tape top" style="background:var(--lav);"></div>
+      <div class="section-kicker">pelan-pelan dicentang ya</div>
+      <h2 class="section-title" style="color:var(--lav-d);">Bucket List Kita</h2>
+      <ul class="bucket-list" id="bucketList"></ul>
+      <div class="bucket-note">Centang ini tersimpan di perangkatmu sendiri.</div>
+    </div>
+  </section>
+
   <section class="section" id="sec-secret">
     <div class="card secret-box">
       <div class="tape top" style="background:var(--blue);"></div>
@@ -332,6 +418,24 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
       <p style="font-size:15px;color:var(--ink-soft);">Ketuk tombol di bawah untuk membuka pesan rahasia...</p>
       <button id="secretBtn">Buka Rahasianya ✨</button>
       <div class="secret-msg" id="secretMsg" hidden></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-coupons">
+    <div class="card">
+      <div class="tape top" style="background:var(--sage);"></div>
+      <div class="section-kicker">tukar kapan saja</div>
+      <h2 class="section-title" style="color:var(--sage-d);">Kupon Pasangan</h2>
+      <div class="coupon-grid" id="couponGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="sec-future">
+    <div class="card">
+      <div class="tape top" style="background:var(--lav);"></div>
+      <div class="section-kicker">time capsule</div>
+      <h2 class="section-title" style="color:var(--lav-d);">Surat Untuk Kita di Masa Depan</h2>
+      <div id="futureView"></div>
     </div>
   </section>
 
@@ -365,6 +469,17 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
 <button id="waFab">📱 Bagikan ke WhatsApp</button>
 <div class="toast" id="toast"></div>
 
+<!-- ================= OPEN WHEN MODAL ================= -->
+<div class="overlay" id="owOverlay" hidden>
+  <div class="drawer ow-modal-card">
+    <h2 class="ow-modal-title" id="owModalTitle"></h2>
+    <p class="ow-modal-body" id="owModalBody"></p>
+    <div class="drawer-actions">
+      <button class="close-btn" id="owModalClose" style="flex:1;">Tutup</button>
+    </div>
+  </div>
+</div>
+
 <!-- ================= EDIT DRAWER ================= -->
 <div class="overlay" id="editOverlay" hidden>
   <div class="drawer">
@@ -394,6 +509,25 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     <h3 style="font-size:20px;color:var(--lav-d);margin:16px 0 8px;">Kuis Kecil</h3>
     <div id="f_quiz_list"></div>
     <button class="add-btn" id="addQuiz">+ Tambah pertanyaan</button>
+
+    <h3 style="font-size:20px;color:var(--gold-d);margin:16px 0 8px;">Open When Letters (tepat 8 surat)</h3>
+    <div id="f_openwhen_list"></div>
+
+    <h3 style="font-size:20px;color:var(--pink-d);margin:16px 0 8px;">Alasan Aku Sayang Kamu</h3>
+    <div id="f_reasons_list"></div>
+    <button class="add-btn" id="addReason">+ Tambah alasan</button>
+
+    <h3 style="font-size:20px;color:var(--lav-d);margin:16px 0 8px;">Bucket List</h3>
+    <div id="f_bucket_list"></div>
+    <button class="add-btn" id="addBucket">+ Tambah item</button>
+
+    <h3 style="font-size:20px;color:var(--sage-d);margin:16px 0 8px;">Kupon Pasangan</h3>
+    <div id="f_coupon_list"></div>
+    <button class="add-btn" id="addCoupon">+ Tambah kupon</button>
+
+    <h3 style="font-size:20px;color:var(--lav-d);margin:16px 0 8px;">Surat Masa Depan</h3>
+    <div class="field"><label>Isi surat</label><textarea id="f_future_text" style="min-height:100px;"></textarea></div>
+    <div class="field"><label>Boleh dibuka mulai tanggal (kosongkan = langsung bisa dibuka)</label><input type="date" id="f_future_date"></div>
 
     <div class="field"><label>Link audio langsung (mp3/wav, opsional)</label><input id="f_audio" placeholder="https://..."></div>
     <div class="field"><label>Link buka di Spotify/YouTube</label><input id="f_songlink" placeholder="https://..."></div>
@@ -448,7 +582,54 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     ],
     audioUrl:'',
     songLink:'https://open.spotify.com/search/LANY%20Out%20Of%20My%20League',
-    closing:'Terima kasih sudah jadi bagian paling berharga dalam hidupku. Selamat ulang tahun ke-25, cinta. Semoga semua doa baikmu dikabulkan. 🤍'
+    closing:'Terima kasih sudah jadi bagian paling berharga dalam hidupku. Selamat ulang tahun ke-25, cinta. Semoga semua doa baikmu dikabulkan. 🤍',
+    openWhen:[
+      {title:"Open When You Miss Me", body:"Kalau kamu lagi kangen aku, ingat: aku juga pasti lagi kangen kamu. Tutup mata sebentar, bayangin aku meluk kamu dari sini. 🤍"},
+      {title:"Open When You're Feeling Sad", body:"Nggak apa-apa kalau hari ini berat. Kamu nggak harus kuat terus. Aku di sini, nungguin kamu merasa lebih baik, pelan-pelan aja."},
+      {title:"Open When You've Had a Bad Day", body:"Hari ini mungkin capek banget. Tapi besok masih ada, dan kamu nggak sendirian ngelewatinnya. Istirahat ya, sayang."},
+      {title:"Open When You Need Motivation", body:"Kamu udah jalan sejauh ini, dan itu nggak mudah. Aku percaya sama kamu, bahkan di hari kamu nggak percaya diri sendiri."},
+      {title:"Open When You Can't Sleep", body:"Kalau susah tidur, coba tarik napas pelan-pelan. Bayangin kita lagi rebahan bareng, ngobrol random sampai ketiduran."},
+      {title:"Open When You Need a Laugh", body:"Inget nggak momen receh kita yang bikin ketawa sampai sakit perut? Itu, itu yang bikin aku makin sayang kamu."},
+      {title:"Open When You Want to Feel Loved", body:"Kamu dicintai lebih dari yang kamu sadari — dengan segala kelebihan dan kekuranganmu. Itu fakta, bukan basa-basi."},
+      {title:"Open on Your Next Birthday", body:"Selamat ulang tahun (lagi)! Semoga tahun ini kamu makin bahagia, makin kuat, dan tetap jadi orang paling aku sayang."}
+    ],
+    reasons:[
+      "Cara kamu bikin hal biasa jadi spesial",
+      "Kebiasaan kecilmu yang bikin aku gemas",
+      "Nyamannya ngobrol sama kamu",
+      "Kamu nggak pernah berhenti mencoba",
+      "Semua momen yang kita lewati bareng",
+      "Kamu yang terus bertumbuh jadi lebih baik",
+      "Cara kamu dengerin aku cerita",
+      "Kesabaranmu ke aku",
+      "Tawamu yang bikin hari jadi cerah",
+      "Caramu peduli tanpa diminta",
+      "Caramu bikin aku merasa aman",
+      "Karena kamu, ya kamu"
+    ],
+    bucketList:[
+      "Nonton matahari terbenam bareng",
+      "Piknik berdua",
+      "Foto di photobooth",
+      "Masak bareng di rumah",
+      "Jalan-jalan ke tempat baru",
+      "Lihat bintang malam-malam",
+      "Tukeran surat tulis tangan",
+      "Movie night yang cozy",
+      "Trip dadakan sehari",
+      "Bikin scrapbook berdua",
+      "Rayain pencapaian kecil",
+      "Bikin tradisi ulang tahun sendiri"
+    ],
+    coupons:[
+      {title:"1x Pelukan Panjang", desc:"Berlaku kapan saja, tanpa alasan."},
+      {title:"1x Movie Night Pilihanmu", desc:"Kamu pilih filmnya, aku siapin cemilannya."},
+      {title:"1x Surat Tulis Tangan", desc:"Ditulis langsung dari hati."},
+      {title:"1x Date Night Dadakan", desc:"Direncanain khusus untukmu."},
+      {title:"1x Malam Cemilan Santai", desc:"Rebahan + ngemil + ngobrol random."},
+      {title:"1 Hari Ekstra Perhatian", desc:"Sehari penuh dimanjain."}
+    ],
+    futureLetter:{ text:"Halo kita di masa depan,\n\nKalau surat ini sudah boleh dibuka, berarti kita sudah melewati banyak hal bersama. Aku cuma mau bilang: terima kasih sudah terus bertahan, terus saling pilih, dan terus saling sayang.", revealDate:"" }
   };
 
   var data = Object.assign({}, defaultData);
@@ -468,7 +649,20 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     if(!data.gallery || !data.gallery.length) data.gallery = defaultData.gallery;
     if(!data.timeline || !data.timeline.length) data.timeline = defaultData.timeline;
     if(!data.quiz || !data.quiz.length) data.quiz = defaultData.quiz;
+    if(!data.openWhen || data.openWhen.length !== 8) data.openWhen = defaultData.openWhen;
+    if(!data.reasons || !data.reasons.length) data.reasons = defaultData.reasons;
+    if(!data.bucketList || !data.bucketList.length) data.bucketList = defaultData.bucketList;
+    if(!data.coupons || !data.coupons.length) data.coupons = defaultData.coupons;
+    if(!data.futureLetter) data.futureLetter = defaultData.futureLetter;
   }
+
+  /* ---------------- VISITOR-LOCAL STATE (bucket list + coupons) ---------------- */
+  function safeGetJSON(key, fallback){
+    try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; }
+  }
+  function safeSetJSON(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+  var bucketChecked = safeGetJSON('bday_bucket_checked', {});
+  var couponsUsed = safeGetJSON('bday_coupons_used', {});
 
   function mergeRemote(remote){
     data = Object.assign({}, defaultData, remote || {});
@@ -519,6 +713,100 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     }
 
     renderQuiz();
+    renderOpenWhen();
+    renderReasons();
+    renderBucket();
+    renderCoupons();
+    renderFuture();
+  }
+
+  /* ---------------- OPEN WHEN LETTERS ---------------- */
+  var owIcons = ['🤍','😢','🌧️','💪','🌙','😂','🫶','🎂'];
+  function renderOpenWhen(){
+    var box = document.getElementById('owGrid'); if(!box) return;
+    box.innerHTML='';
+    (data.openWhen||[]).forEach(function(item, idx){
+      var div = document.createElement('div'); div.className='ow-card';
+      div.innerHTML = '<div class="ow-icon">'+(owIcons[idx]||'✉️')+'</div><div class="ow-title">'+escapeHtml(item.title||'')+'</div>';
+      div.addEventListener('click', function(){
+        document.getElementById('owModalTitle').textContent = item.title||'';
+        document.getElementById('owModalBody').textContent = item.body||'';
+        document.getElementById('owOverlay').hidden = false;
+      });
+      box.appendChild(div);
+    });
+  }
+
+  /* ---------------- REASONS ---------------- */
+  function renderReasons(){
+    var box = document.getElementById('reasonGrid'); if(!box) return;
+    box.innerHTML='';
+    (data.reasons||[]).forEach(function(text, idx){
+      var div = document.createElement('div'); div.className='reason-card';
+      div.dataset.flipped='0';
+      div.textContent = 'Alasan #'+(idx+1)+' 💌';
+      div.addEventListener('click', function(){
+        var flipped = div.dataset.flipped === '1';
+        if(!flipped){ div.textContent = text; div.classList.add('flipped'); div.dataset.flipped='1'; }
+        else{ div.textContent = 'Alasan #'+(idx+1)+' 💌'; div.classList.remove('flipped'); div.dataset.flipped='0'; }
+      });
+      box.appendChild(div);
+    });
+  }
+
+  /* ---------------- BUCKET LIST ---------------- */
+  function renderBucket(){
+    var box = document.getElementById('bucketList'); if(!box) return;
+    box.innerHTML='';
+    (data.bucketList||[]).forEach(function(text, idx){
+      var li = document.createElement('li'); li.className='bucket-item'+(bucketChecked[idx] ? ' done' : '');
+      li.innerHTML = '<input type="checkbox" '+(bucketChecked[idx]?'checked':'')+' data-bk="'+idx+'"><span>'+escapeHtml(text)+'</span>';
+      box.appendChild(li);
+    });
+    box.querySelectorAll('[data-bk]').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        var idx = cb.getAttribute('data-bk');
+        bucketChecked[idx] = cb.checked;
+        safeSetJSON('bday_bucket_checked', bucketChecked);
+        cb.closest('.bucket-item').classList.toggle('done', cb.checked);
+      });
+    });
+  }
+
+  /* ---------------- COUPONS ---------------- */
+  function renderCoupons(){
+    var box = document.getElementById('couponGrid'); if(!box) return;
+    box.innerHTML='';
+    (data.coupons||[]).forEach(function(item, idx){
+      var used = !!couponsUsed[idx];
+      var div = document.createElement('div'); div.className='coupon-card';
+      div.innerHTML =
+        '<div class="coupon-txt"><div class="coupon-title">'+escapeHtml(item.title||'')+'</div><div class="coupon-desc">'+escapeHtml(item.desc||'')+'</div></div>'+
+        '<button type="button" class="coupon-redeem'+(used?' used':'')+'" data-cp="'+idx+'">'+(used?'Terpakai':'Tukar')+'</button>';
+      box.appendChild(div);
+    });
+    box.querySelectorAll('[data-cp]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var idx = btn.getAttribute('data-cp');
+        couponsUsed[idx] = !couponsUsed[idx];
+        safeSetJSON('bday_coupons_used', couponsUsed);
+        renderCoupons();
+        if(couponsUsed[idx]) burstConfetti();
+      });
+    });
+  }
+
+  /* ---------------- FUTURE LETTER ---------------- */
+  function renderFuture(){
+    var box = document.getElementById('futureView'); if(!box) return;
+    var fl = data.futureLetter || {};
+    var canOpen = !fl.revealDate || (new Date(fl.revealDate+'T00:00:00') <= new Date());
+    if(!canOpen){
+      box.innerHTML =
+        '<div class="future-locked">🔒 Surat ini baru boleh dibuka tanggal<div class="future-date">'+escapeHtml(fl.revealDate)+'</div></div>';
+      return;
+    }
+    box.innerHTML = '<div class="future-body">'+escapeHtml(fl.text||'')+'</div>';
   }
 
   function renderQuiz(){
@@ -618,7 +906,7 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     if(bgHeartsStarted) return; bgHeartsStarted = true;
     var layer = document.getElementById('floatHeartsLayer');
     var symbols = ['♡','♥','✦','★'];
-    var heartColors = ['#E0579A','#6FB9DE','#7C8EEA','#6FA85C'];
+    var heartColors = ['#E0579A','#6FB9DE','#D94A8C','#4FA8D8'];
     function spawn(){
       var el = document.createElement('div');
       el.className='bg-heart';
@@ -640,7 +928,7 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
   function resizeCanvas(){ canvas.width = innerWidth; canvas.height = innerHeight; }
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
-  var confettiColors = ['#F6CBD8','#BCE3F2','#DED2F2','#C9D8BB','#D9A24B'];
+  var confettiColors = ['#F6CBD8','#BCE3F2','#E0579A','#6FB9DE','#FADCE8'];
   function burstConfetti(){
     var pieces = [];
     for(var i=0;i<90;i++){
@@ -714,6 +1002,11 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
+  /* ---------------- OPEN WHEN MODAL CLOSE ---------------- */
+  document.getElementById('owModalClose').addEventListener('click', function(){
+    document.getElementById('owOverlay').hidden = true;
+  });
+
   /* ---------------- SECRET GIFT ---------------- */
   document.getElementById('secretBtn').addEventListener('click', function(){
     var msg = document.getElementById('secretMsg');
@@ -769,10 +1062,16 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     document.getElementById('f_audio').value = data.audioUrl;
     document.getElementById('f_songlink').value = data.songLink;
     document.getElementById('f_closing').value = data.closing;
+    document.getElementById('f_future_text').value = (data.futureLetter && data.futureLetter.text) || '';
+    document.getElementById('f_future_date').value = (data.futureLetter && data.futureLetter.revealDate) || '';
     document.getElementById('f_pin').value = '';
     renderGalleryEditor();
     renderTimelineEditor();
     renderQuizEditor();
+    renderOpenWhenEditor();
+    renderReasonsEditor();
+    renderBucketEditor();
+    renderCouponEditor();
     editOverlay.hidden = false;
   }
   document.getElementById('editCancel').addEventListener('click', function(){ editOverlay.hidden = true; });
@@ -843,6 +1142,81 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
     renderQuizEditor();
   });
 
+  function renderOpenWhenEditor(){
+    var wrap = document.getElementById('f_openwhen_list'); wrap.innerHTML='';
+    data.openWhen.forEach(function(item, idx){
+      var row = document.createElement('div'); row.className='repeat-row';
+      row.innerHTML =
+        '<div class="field"><label>Judul surat '+(idx+1)+'</label><input data-ow="'+idx+'" data-k="title" value="'+escapeAttr(item.title||'')+'"></div>'+
+        '<div class="field"><label>Isi surat</label><textarea data-ow="'+idx+'" data-k="body">'+escapeHtml(item.body||'')+'</textarea></div>';
+      wrap.appendChild(row);
+    });
+  }
+
+  function renderReasonsEditor(){
+    var wrap = document.getElementById('f_reasons_list'); wrap.innerHTML='';
+    data.reasons.forEach(function(text, idx){
+      var row = document.createElement('div'); row.className='repeat-row';
+      row.innerHTML =
+        '<div class="field"><label>Alasan '+(idx+1)+'</label><input data-rs="'+idx+'" value="'+escapeAttr(text||'')+'"></div>'+
+        '<div class="row-actions"><button type="button" class="mini-btn" data-del-rs="'+idx+'">Hapus</button></div>';
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll('[data-del-rs]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        data.reasons.splice(parseInt(btn.getAttribute('data-del-rs'),10),1);
+        renderReasonsEditor();
+      });
+    });
+  }
+  document.getElementById('addReason').addEventListener('click', function(){
+    data.reasons.push('Alasan baru');
+    renderReasonsEditor();
+  });
+
+  function renderBucketEditor(){
+    var wrap = document.getElementById('f_bucket_list'); wrap.innerHTML='';
+    data.bucketList.forEach(function(text, idx){
+      var row = document.createElement('div'); row.className='repeat-row';
+      row.innerHTML =
+        '<div class="field"><label>Item '+(idx+1)+'</label><input data-bl="'+idx+'" value="'+escapeAttr(text||'')+'"></div>'+
+        '<div class="row-actions"><button type="button" class="mini-btn" data-del-bl="'+idx+'">Hapus</button></div>';
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll('[data-del-bl]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        data.bucketList.splice(parseInt(btn.getAttribute('data-del-bl'),10),1);
+        renderBucketEditor();
+      });
+    });
+  }
+  document.getElementById('addBucket').addEventListener('click', function(){
+    data.bucketList.push('Item baru');
+    renderBucketEditor();
+  });
+
+  function renderCouponEditor(){
+    var wrap = document.getElementById('f_coupon_list'); wrap.innerHTML='';
+    data.coupons.forEach(function(item, idx){
+      var row = document.createElement('div'); row.className='repeat-row';
+      row.innerHTML =
+        '<div class="field"><label>Judul kupon '+(idx+1)+'</label><input data-cu="'+idx+'" data-k="title" value="'+escapeAttr(item.title||'')+'"></div>'+
+        '<div class="field"><label>Deskripsi</label><input data-cu="'+idx+'" data-k="desc" value="'+escapeAttr(item.desc||'')+'"></div>'+
+        '<div class="row-actions"><button type="button" class="mini-btn" data-del-cu="'+idx+'">Hapus</button></div>';
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll('[data-del-cu]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        data.coupons.splice(parseInt(btn.getAttribute('data-del-cu'),10),1);
+        renderCouponEditor();
+      });
+    });
+  }
+  document.getElementById('addCoupon').addEventListener('click', function(){
+    data.coupons.push({title:'Kupon baru', desc:''});
+    renderCouponEditor();
+  });
+
   document.getElementById('editSave').addEventListener('click', function(){
     data.name = document.getElementById('f_name').value || defaultData.name;
     data.heroMsg = document.getElementById('f_hero').value;
@@ -869,6 +1243,27 @@ main{ max-width:560px; margin:0 auto; padding-bottom:70px; position:relative; z-
       if(data.quiz[i]) data.quiz[i][k] = input.value;
     });
     quizAnswered = {}; quizScore = 0;
+
+    document.querySelectorAll('#f_openwhen_list [data-ow]').forEach(function(input){
+      var i = parseInt(input.getAttribute('data-ow'),10), k = input.getAttribute('data-k');
+      if(data.openWhen[i]) data.openWhen[i][k] = input.value;
+    });
+    document.querySelectorAll('#f_reasons_list [data-rs]').forEach(function(input){
+      var i = parseInt(input.getAttribute('data-rs'),10);
+      data.reasons[i] = input.value;
+    });
+    document.querySelectorAll('#f_bucket_list [data-bl]').forEach(function(input){
+      var i = parseInt(input.getAttribute('data-bl'),10);
+      data.bucketList[i] = input.value;
+    });
+    document.querySelectorAll('#f_coupon_list [data-cu]').forEach(function(input){
+      var i = parseInt(input.getAttribute('data-cu'),10), k = input.getAttribute('data-k');
+      if(data.coupons[i]) data.coupons[i][k] = input.value;
+    });
+    data.futureLetter = {
+      text: document.getElementById('f_future_text').value,
+      revealDate: document.getElementById('f_future_date').value
+    };
 
     var pin = document.getElementById('f_pin').value;
     if(!pin){
