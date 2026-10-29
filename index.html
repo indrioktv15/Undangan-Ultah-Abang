@@ -606,14 +606,19 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
       <div class="tape top" style="background:var(--sage);"></div>
       <div class="section-kicker">lagu untuk kita</div>
       <div class="vinyl" id="vinyl"></div>
-      <div class="song-title">Out of My League</div>
-      <div class="song-artist">LANY</div>
+      <div class="song-title" id="songTitleView">Out of My League</div>
+      <div class="song-artist" id="songArtistView">LANY</div>
       <div class="music-ctrl">
+        <button class="btn-pill btn-outline" id="prevSongBtn">⏮</button>
         <button class="btn-pill btn-pink" id="playBtn">▶ Putar</button>
+        <button class="btn-pill btn-outline" id="nextSongBtn">⏭</button>
+      </div>
+      <div class="music-ctrl" style="margin-top:8px;">
         <a class="btn-pill btn-outline" id="openSongLink" href="#" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Dengarkan di Spotify/YouTube ↗</a>
       </div>
       <audio id="audioEl" preload="none"></audio>
       <div class="music-note" id="musicNote">Tambahkan link audio langsung di mode edit supaya bisa diputar di sini.</div>
+      <div class="music-note" id="songCounter" style="margin-top:4px;"></div>
     </div>
   </section>
 
@@ -696,8 +701,10 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     <div class="field"><label>Isi surat</label><textarea id="f_future_text" style="min-height:100px;"></textarea></div>
     <div class="field"><label>Boleh dibuka mulai tanggal (kosongkan = langsung bisa dibuka)</label><input type="date" id="f_future_date"></div>
 
-    <div class="field"><label>Link audio langsung (mp3/wav, opsional)</label><input id="f_audio" placeholder="https://..."></div>
-    <div class="field"><label>Link buka di Spotify/YouTube</label><input id="f_songlink" placeholder="https://..."></div>
+    <h3 style="font-size:20px;color:var(--sage-d);margin:16px 0 8px;">Playlist Lagu (boleh lebih dari 1, otomatis lanjut ke lagu berikutnya kalau sudah habis)</h3>
+    <div id="f_songs_list"></div>
+    <button class="add-btn" type="button" id="addSong">+ Tambah lagu</button>
+
     <div class="field"><label>Pesan penutup</label><textarea id="f_closing"></textarea></div>
 
     <h3 style="font-size:20px;color:var(--lav-d);margin:16px 0 8px;">PIN Admin</h3>
@@ -775,8 +782,9 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
         ]
       }
     ],
-    audioUrl:'',
-    songLink:'https://open.spotify.com/search/LANY%20Out%20Of%20My%20League',
+    songs:[
+      { title:'Out of My League', artist:'LANY', audioUrl:'', songLink:'https://open.spotify.com/search/LANY%20Out%20Of%20My%20League' }
+    ],
     closing:'Terima kasih sudah jadi bagian paling berharga dalam hidupku. Selamat ulang tahun ke-25, cinta. Semoga semua doa baikmu dikabulkan. 🤍',
     openWhen:[
       {title:"Open When You Miss Me", body:"Kalau kamu lagi kangen aku, ingat: aku juga pasti lagi kangen kamu. Tutup mata sebentar, bayangin aku meluk kamu dari sini. 🤍"},
@@ -828,6 +836,7 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
   };
 
   var data = Object.assign({}, defaultData);
+  var currentSongIdx = 0;
   normalizeData();
 
   function toast(msg){
@@ -849,6 +858,20 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     if(!data.bucketList || !data.bucketList.length) data.bucketList = defaultData.bucketList;
     if(!data.coupons || !data.coupons.length) data.coupons = defaultData.coupons;
     if(!data.futureLetter) data.futureLetter = defaultData.futureLetter;
+    if(!data.songs || !data.songs.length){
+      // migrasi dari data lama (1 lagu lewat audioUrl/songLink) kalau ada,
+      // supaya lagu yang sudah pernah disimpan sebelumnya tidak hilang.
+      if(data.audioUrl || data.songLink){
+        data.songs = [{
+          title: 'Out of My League',
+          artist: 'LANY',
+          audioUrl: data.audioUrl || '',
+          songLink: data.songLink || defaultData.songs[0].songLink
+        }];
+      } else {
+        data.songs = defaultData.songs.slice();
+      }
+    }
   }
 
   /* ---------------- VISITOR-LOCAL STATE (bucket list + coupons) ---------------- */
@@ -863,6 +886,7 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     data = Object.assign({}, defaultData, remote || {});
     normalizeData();
     quizState = { activeIdx:null, qIndex:0, answers:[], done:false };
+    currentSongIdx = 0;
   }
 
   /* ---------------- RENDER VIEW ---------------- */
@@ -875,7 +899,6 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     document.getElementById('viewLetterSign').textContent = data.letterSign;
     document.getElementById('viewClosing').textContent = data.closing;
     document.getElementById('secretMsg').textContent = data.secret;
-    document.getElementById('openSongLink').href = data.songLink || '#';
 
     var hasLock = !!(data.lockAnswer && data.lockAnswer.trim());
     var lockQEl = document.getElementById('lockQ');
@@ -900,12 +923,9 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
       tl.appendChild(div);
     });
 
-    if(data.audioUrl){
-      document.getElementById('audioEl').src = data.audioUrl;
-      document.getElementById('musicNote').textContent = 'Siap diputar langsung di sini.';
-    } else {
-      document.getElementById('musicNote').textContent = 'Belum ada link audio langsung — tekan "Dengarkan di Spotify/YouTube" untuk memutar di luar, atau tambahkan link audio di mode edit.';
-    }
+    if(currentSongIdx >= data.songs.length) currentSongIdx = 0;
+    document.getElementById('audioEl').src = (data.songs[currentSongIdx] && data.songs[currentSongIdx].audioUrl) || '';
+    renderCurrentSong();
 
     renderQuiz();
     renderOpenWhen();
@@ -1377,9 +1397,12 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
 
   /* ---------------- AUTOPLAY ON OPEN ---------------- */
   function tryAutoplayMusic(){
-    if(!data.audioUrl) return;
+    currentSongIdx = 0;
+    renderCurrentSong();
+    var s = data.songs[0];
+    if(!s || !s.audioUrl) return;
     var el = document.getElementById('audioEl');
-    el.src = data.audioUrl;
+    el.src = s.audioUrl;
     el.play().then(function(){
       playing = true;
       document.getElementById('vinyl').classList.add('playing');
@@ -1503,13 +1526,50 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     if(!msg.hidden) burstConfetti();
   });
 
-  /* ---------------- MUSIC ---------------- */
+  /* ---------------- MUSIC (playlist, otomatis lanjut ke lagu berikutnya) ---------------- */
   var audioEl = document.getElementById('audioEl');
   var vinyl = document.getElementById('vinyl');
   var playBtn = document.getElementById('playBtn');
   var playing = false;
+
+  function currentSong(){ return (data.songs && data.songs[currentSongIdx]) || {}; }
+
+  function renderCurrentSong(){
+    var s = currentSong();
+    document.getElementById('songTitleView').textContent = s.title || 'Lagu untuk kita';
+    document.getElementById('songArtistView').textContent = s.artist || '';
+    document.getElementById('openSongLink').href = s.songLink || '#';
+    document.getElementById('musicNote').textContent = s.audioUrl
+      ? 'Siap diputar langsung di sini.'
+      : 'Belum ada link audio langsung — tekan "Dengarkan di Spotify/YouTube" untuk memutar di luar, atau tambahkan link audio di mode edit.';
+    var total = (data.songs && data.songs.length) || 0;
+    document.getElementById('songCounter').textContent = total > 1 ? ('Lagu ' + (currentSongIdx + 1) + ' dari ' + total) : '';
+    document.getElementById('prevSongBtn').style.display = total > 1 ? '' : 'none';
+    document.getElementById('nextSongBtn').style.display = total > 1 ? '' : 'none';
+  }
+
+  function loadSong(idx, autoplay){
+    if(!data.songs || !data.songs.length) return;
+    currentSongIdx = ((idx % data.songs.length) + data.songs.length) % data.songs.length;
+    var s = currentSong();
+    renderCurrentSong();
+    if(s.audioUrl){
+      audioEl.src = s.audioUrl;
+      if(autoplay){
+        audioEl.play().then(function(){
+          playing = true; vinyl.classList.add('playing'); playBtn.textContent='⏸ Pause';
+        }).catch(function(){
+          playing = false; vinyl.classList.remove('playing'); playBtn.textContent='▶ Putar';
+        });
+      }
+    } else {
+      audioEl.removeAttribute('src');
+      playing = false; vinyl.classList.remove('playing'); playBtn.textContent='▶ Putar';
+    }
+  }
+
   playBtn.addEventListener('click', function(){
-    if(!data.audioUrl){
+    if(!currentSong().audioUrl){
       toast('Belum ada link audio. Buka "Dengarkan di Spotify/YouTube" ya.');
       return;
     }
@@ -1523,7 +1583,15 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
       audioEl.pause(); playing=false; vinyl.classList.remove('playing'); playBtn.textContent='▶ Putar';
     }
   });
-  audioEl.addEventListener('ended', function(){ playing=false; vinyl.classList.remove('playing'); playBtn.textContent='▶ Putar'; });
+  document.getElementById('nextSongBtn').addEventListener('click', function(){ loadSong(currentSongIdx + 1, true); });
+  document.getElementById('prevSongBtn').addEventListener('click', function(){ loadSong(currentSongIdx - 1, true); });
+  audioEl.addEventListener('ended', function(){
+    if(data.songs && data.songs.length > 1){
+      loadSong(currentSongIdx + 1, true); // otomatis lanjut ke lagu berikutnya
+    } else {
+      playing=false; vinyl.classList.remove('playing'); playBtn.textContent='▶ Putar';
+    }
+  });
 
   /* ---------------- WHATSAPP SHARE ---------------- */
   document.getElementById('waFab').addEventListener('click', function(){
@@ -1553,8 +1621,6 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     document.getElementById('f_secret').value = data.secret;
     document.getElementById('f_lockq').value = data.lockQuestion;
     document.getElementById('f_locka').value = data.lockAnswer;
-    document.getElementById('f_audio').value = data.audioUrl;
-    document.getElementById('f_songlink').value = data.songLink;
     document.getElementById('f_closing').value = data.closing;
     document.getElementById('f_future_text').value = (data.futureLetter && data.futureLetter.text) || '';
     document.getElementById('f_future_date').value = (data.futureLetter && data.futureLetter.revealDate) || '';
@@ -1566,6 +1632,7 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     renderReasonsEditor();
     renderBucketEditor();
     renderCouponEditor();
+    renderSongsEditor();
     editOverlay.hidden = false;
   }
   document.getElementById('editCancel').addEventListener('click', function(){ editOverlay.hidden = true; });
@@ -1754,6 +1821,31 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
       });
     });
   }
+  function renderSongsEditor(){
+    var wrap = document.getElementById('f_songs_list'); wrap.innerHTML='';
+    data.songs.forEach(function(item, idx){
+      var row = document.createElement('div'); row.className='repeat-row';
+      row.innerHTML =
+        '<div class="field"><label>Judul lagu '+(idx+1)+'</label><input data-sg="'+idx+'" data-k="title" value="'+escapeAttr(item.title||'')+'"></div>'+
+        '<div class="field"><label>Penyanyi</label><input data-sg="'+idx+'" data-k="artist" value="'+escapeAttr(item.artist||'')+'"></div>'+
+        '<div class="field"><label>Link audio langsung (mp3/wav, opsional)</label><input data-sg="'+idx+'" data-k="audioUrl" value="'+escapeAttr(item.audioUrl||'')+'" placeholder="https://..."></div>'+
+        '<div class="field"><label>Link buka di Spotify/YouTube</label><input data-sg="'+idx+'" data-k="songLink" value="'+escapeAttr(item.songLink||'')+'" placeholder="https://..."></div>'+
+        '<div class="row-actions"><button type="button" class="mini-btn" data-del-sg="'+idx+'">Hapus</button></div>';
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll('[data-del-sg]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        if(data.songs.length <= 1){ toast('Minimal harus ada 1 lagu.'); return; }
+        data.songs.splice(parseInt(btn.getAttribute('data-del-sg'),10),1);
+        renderSongsEditor();
+      });
+    });
+  }
+  document.getElementById('addSong').addEventListener('click', function(){
+    data.songs.push({title:'Lagu baru', artist:'', audioUrl:'', songLink:''});
+    renderSongsEditor();
+  });
+
   document.getElementById('addCoupon').addEventListener('click', function(){
     data.coupons.push({title:'Kupon baru', desc:''});
     renderCouponEditor();
@@ -1768,8 +1860,6 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
     data.secret = document.getElementById('f_secret').value;
     data.lockQuestion = document.getElementById('f_lockq').value;
     data.lockAnswer = document.getElementById('f_locka').value;
-    data.audioUrl = document.getElementById('f_audio').value.trim();
-    data.songLink = document.getElementById('f_songlink').value.trim() || defaultData.songLink;
     data.closing = document.getElementById('f_closing').value;
 
     document.querySelectorAll('#f_gallery_list [data-g]').forEach(function(input){
@@ -1822,6 +1912,11 @@ main{ max-width:1120px; margin:0 auto; padding:0 20px 70px; position:relative; z
       var i = parseInt(input.getAttribute('data-cu'),10), k = input.getAttribute('data-k');
       if(data.coupons[i]) data.coupons[i][k] = input.value;
     });
+    document.querySelectorAll('#f_songs_list [data-sg]').forEach(function(input){
+      var i = parseInt(input.getAttribute('data-sg'),10), k = input.getAttribute('data-k');
+      if(data.songs[i]) data.songs[i][k] = input.value;
+    });
+    currentSongIdx = 0;
     data.futureLetter = {
       text: document.getElementById('f_future_text').value,
       revealDate: document.getElementById('f_future_date').value
